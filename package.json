@@ -16,7 +16,6 @@
         "cryptonight-hashing": "git://github.com/MoneroOcean/node-cryptonight-hashing.git",
         "dateformat": "*",
         "mailgun.js": "*",
-        "node-telegram-bot-api": "*",
         "nodemailer": "2.7.2",
         "nodemailer-sendmail-transport": "*",
         "redis": "*",
