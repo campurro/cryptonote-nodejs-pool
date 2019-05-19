@@ -94,13 +94,13 @@ Features
 Community / Support
 ===
 
-* [GitHub Wiki](https://github.com/mcnproject/mm-cryptonote-nodejs-pool/wiki)
-* [GitHub Issues](https://github.com/mcnproject/mm-cryptonote-nodejs-pool/issues)
-* [Discord Server](https://discord.gg/RGqymUj)
+* [GitHub Wiki](https://github.com/dvandal/cryptonote-nodejs-pool/wiki)
+* [GitHub Issues](https://github.com/dvandal/cryptonote-nodejs-pool/issues)
+* [Telegram Group](http://t.me/CryptonotePool)j)
 
 #### Pools Using This Software
 
-* https://minercountry.com/
+* https://smartcoinpool.com/
 
 
 Usage
@@ -150,7 +150,7 @@ sudo su - your-user
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-git clone https://github.com/mcnproject/mm-cryptonote-nodejs-pool.git pool
+git clone https://github.com/dvandal/cryptonote-nodejs-pool.git pool
 cd pool
 
 npm update
@@ -194,6 +194,8 @@ Explanation for each field:
 "cnAlgorithm": "cryptonight",
 "cnVariant": 1,
 "cnBlobType": 0,
+"includeHeight":false, /*true to include block.height in job to miner*/
+"includeAlgo":"cn/wow", /*wownero specific change to include algo in job to miner*/
 
 /* Logging */
 "logging": {
@@ -362,7 +364,8 @@ Explanation for each field:
     "depth": 60,
     "poolFee": 0.8, // 0.8% pool fee (1% total fee total including donations)
     "devDonation": 0.2, // 0.2% donation to send to pool dev
-    "networkFee": 0.0, // Network/Governance fee (used by some coins like Loki)
+    "networkFee": 0.0, // Network/Governance fee (used by some coins)
+    "useFirstVout": false, // Should be true for a coin like Loki that has multiple block reward recipients where first is miner reward
     
     /* Some forknote coins have an issue with block height in RPC request, to fix you can enable this option.
        See: https://github.com/forknote/forknote-pool/issues/48 */
@@ -619,7 +622,7 @@ sudo systemctl start cryptonote-nodejs-pool.service
 
 To enable merged mining you will need to use at leas 2 nodejs processes. One for the pool process + main coin config and another process for the child coin payments, unlocker, etc.
 First, you will need both coins node daemons running.
-Take a look at the [config_inf8-mcn.json](https://github.com/campurro/cryptonote-nodejs-pool/blob/master/config_inf8-mcn.json) for a main (pool) config example.
+Take a look at the [config_inf8-mcn.json](https://github.com/dvandal/cryptonote-nodejs-pool/blob/dvandal-with-mergemining/config_inf8-mcn.json) for a main (pool) config example.
 The child coin config file is a normal config with your child coin data but with the poolServer.enabled set to false. 
 
 ```
@@ -771,17 +774,22 @@ Donations
 
 Thanks for supporting my works on this project! If you want to make a donation to [Campurro](https://github.com/campurro/), the developper of the merged mining support for this project, you can send any amount of your choice to one of theses addresses:
 
-* Bitcoin (BTC): `35kAuFPUS1REXQnGM2TxqMbwkKZ9hA4ZfW`
-* Ethereum (ETH): `0x1f6177295A6630858BFA25fD60effA048B307674`
-* Litecoin (LTC): `MPoYzJjr7FhRqwgSNNYi6Ai9uQ9MeiR5Yy`
-* Monero (XMR): `49nCLA3KtAx5MTWidB3opHif7cwnXXHcn6occpXB8DTe6B4QjcAqG4SH7TrGPVuE4n1ygE6is5nER4ms1Yb1hnmYMkBwN4L`
-* Moneta Verde (MCN): `VduTsfyVGBAA2CqdqEh4Vya7B1im7sf1PDbntv1GomLxQpXNxwucsww4ArmR6uLK7PQCY4kVnPGXr8evyXDFNmkk2aBv178S6`
+* Bitcoin (BTC): `34GDVuVbuxyYdR8bPZ7g6r12AhPPCrNfXt`
+* Bitcoin Cash (BCH): `qpl0gr8u3yu7z4nzep955fqy3w8m6w769sec08u3dp`
+* Ethereum (ETH): `0xd4d9a4f22475039f115824b15999a5a8143d424c`
+* Litecoin (LTC): `LW169WygGDMBN1PGSr8kNbrFBx94emGWfB`
+* Monero (XMR): `4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhHdmH87gYyoDR6NMZj`
+* Graft (GRFT): `GMPHYf5KRkcAyik7Jw9oHRfJtUdw2Kj5f4VTFJ25AaFVYxofetir8Cnh7S76Q854oMXzwaguL8p5KEz1tm3rn1SA6r6p9dMjuV81yqXCgi`
+* Haven (XHV): `hvi1aCqoAZF19J8pijvqnrUkeAeP8Rvr4XyfDMGJcarhbL15KgYKM1hN7kiHMu3fer5k8JJ8YRLKCahDKFgLFgJMYAfngJjDmkZAVuiRP15qv`
+* Masari (MSR): `5t5mEm254JNJ9HqRjY9vCiTE8aZALHX3v8TqhyQ3TTF9VHKZQXkRYjPDweT9kK4rJw7dDLtZXGjav2z9y24vXCdRc3DY4daikoNTeK1v4e`
+* Stellite (XTL): `SEiStP7SMy1bvjkWc9dd1t2v1Et5q2DrmaqLqFTQQ9H7JKdZuATcPHUbUL3bRjxzxTDYitHsAPqF8EeCLw3bW8ARe8rYRNQQwys1JcJAs3qSH`
 
 
 Credits
 ---------
 * [Daniel Vandal](https://github.com/dvandal/) - Developer of this project when this project was created.
 * [fancoder](//github.com/fancoder) - Developer on cryptonote-universal-pool project from which current project is forked.
+* [Campurro](//github.com/campurro) - Developer of merge mining support.
 
 License
 -------
