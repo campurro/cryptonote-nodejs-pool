@@ -1,16 +1,14 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
-	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
-	"daemonType": "default",
+	"coin": "xcash",
+	"symbol": "XCASH",
+	"coinUnits": 1000000,
+	"coinDecimalPlaces": 6,
+	"coinDifficultyTarget": 120,
+
 	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
+	"cnVariant": 9,
 	"cnBlobType": 0,
 
 	"logging": {
@@ -24,59 +22,51 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
-		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"poolAddress": "YOUR_POOLS_XCASH_ADDRESS",
+		"intAddressPrefix": 4178228,
 		"blockRefreshInterval": 1000,
-		"minerTimeout": 900,
+		"minerTimeout": 600,
 		"sslCert": "./cert.pem",
 		"sslKey": "./privkey.pem",
 		"sslCA": "./chain.pem",
 		"ports": [
 			{
 				"port": 3333,
-				"difficulty": 5000,
-				"desc": "Low end hardware"
-            },
-			{
-				"port": 4444,
-				"difficulty": 15000,
-				"desc": "Mid range hardware"
+				"difficulty": 10000,
+				"desc": "CPU Mining"
             },
 			{
 				"port": 5555,
-				"difficulty": 25000,
-				"desc": "High end hardware"
+				"difficulty": 50000,
+				"desc": "Low end GPU mining"
             },
 			{
 				"port": 7777,
-				"difficulty": 500000,
-				"desc": "Cloud-mining / NiceHash"
+				"difficulty": 100000,
+				"desc": "High end GPU mining"
             },
 			{
-				"port": 8888,
-				"difficulty": 25000,
-				"desc": "Hidden port",
-				"hidden": true
+				"port": 9000,
+				"difficulty": 50000,
+				"desc": "SSL",
+				"ssl": true
             },
 			{
 				"port": 9999,
-				"difficulty": 20000,
-				"desc": "SSL connection",
-				"ssl": true
+				"difficulty": 200000,
+				"desc": "Very high end GPU mining, Nicehash"
             }
         ],
 		"varDiff": {
 			"minDiff": 100,
 			"maxDiff": 100000000,
-			"targetTime": 60,
-			"retargetTime": 30,
+			"targetTime": 30,
+			"retargetTime": 60,
 			"variancePercent": 30,
 			"maxJump": 100
 		},
@@ -113,19 +103,18 @@
 
 	"payments": {
 		"enabled": true,
-		"interval": 1800,
+		"interval": 3600,
 		"maxAddresses": 50,
-		"mixin": 12,
-		"priority": 0,
-		"transferFee": 1000,
-		"dynamicTransferFee": true,
+		"mixin": 20,
+		"priority": 1,
+		"transferFee": 5000,
+		"dynamicTransferFee": false,
 		"minerPayFee": true,
 		"minPayment": 10000000000,
 		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"maxTransactionAmount": 10000000000000,
+		"denomination": 1000
 	},
-
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
@@ -138,28 +127,28 @@
 	"api": {
 		"enabled": true,
 		"hashrateWindow": 600,
-		"updateInterval": 5,
-		"bindIp": "0.0.0.0",
+		"updateInterval": 10,
+		"bindIp": "YOUR_SERVERS_IP_ADDRESS",
 		"port": 8117,
-		"blocks": 30,
-		"payments": 30,
-		"password": "your_password",
+		"blocks": 20,
+		"payments": 20,
+		"password": "PASSWORD_FOR_THE_ADMIN_AREA",
 		"ssl": false,
 		"sslPort": 8119,
 		"sslCert": "./cert.pem",
 		"sslKey": "./privkey.pem",
 		"sslCA": "./chain.pem",
-		"trustProxyIP": true
+		"trustProxyIP": false
 	},
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 18281
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": YOUR_RPC_WALLET_PORT
 	},
 
 	"redis": {
@@ -176,6 +165,16 @@
 			"emailAdded": "Your email was registered",
 			"workerConnected": "Worker %WORKER_NAME% connected",
 			"workerTimeout": "Worker %WORKER_NAME% stopped hashing",
+			"workerBanned": "Worker %WORKER_NAME% banned",
+			"blockFound": "Block %HEIGHT% found !",
+			"blockUnlocked": "Block %HEIGHT% unlocked !",
+			"blockOrphaned": "Block %HEIGHT% orphaned !",
+			"payment": "We sent you a payment !"
+		},
+		"emailMessage": {
+			"emailAdded": "Your email has been registered to receive pool notifications.",
+			"workerConnected": "Your worker %WORKER_NAME% for address %MINER% is now connected from ip %IP%.",
+			"workerTimeout": "Your worker %WORKER_NAME% for address %MINER% has stopped submitting hashes on %LAST_HASH%.",
 			"workerBanned": "Worker %WORKER_NAME% banned",
 			"blockFound": "Block %HEIGHT% found !",
 			"blockUnlocked": "Block %HEIGHT% unlocked !",
@@ -239,9 +238,8 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify",
-			"blocks": "/blocks"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
 
@@ -257,7 +255,7 @@
 	},
 
 	"prices": {
-		"source": "tradeogre",
+		"source": "tradesatoshi",
 		"currency": "USD"
 	},
 

@@ -1,17 +1,16 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
+	"coin": "masari",
+	"symbol": "MSR",
+	"coinUnits": 1000000000000,
 	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
+	"coinDifficultyTarget": 60,
+
 	"daemonType": "default",
 	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"cnVariant": 9,
+	"cnBlobType": 6,
 
 	"logging": {
 		"files": {
@@ -24,15 +23,13 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": null,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -75,7 +72,7 @@
 		"varDiff": {
 			"minDiff": 100,
 			"maxDiff": 100000000,
-			"targetTime": 60,
+			"targetTime": 120,
 			"retargetTime": 30,
 			"variancePercent": 30,
 			"maxJump": 100
@@ -88,7 +85,7 @@
 		},
 		"fixedDiff": {
 			"enabled": true,
-			"addressSeparator": "."
+			"addressSeparator": "+"
 		},
 		"shareTrust": {
 			"enabled": true,
@@ -115,15 +112,15 @@
 		"enabled": true,
 		"interval": 1800,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 5,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 5000000000,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
+		"minPayment": 1000000000000,
 		"maxPayment": null,
 		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"denomination": 100000000000
 	},
 
 	"blockUnlocker": {
@@ -137,7 +134,7 @@
 
 	"api": {
 		"enabled": true,
-		"hashrateWindow": 600,
+		"hashrateWindow": 900,
 		"updateInterval": 5,
 		"bindIp": "0.0.0.0",
 		"port": 8117,
@@ -154,12 +151,12 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 38081
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 38083
 	},
 
 	"redis": {

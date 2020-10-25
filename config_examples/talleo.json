@@ -1,17 +1,23 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
-	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
-	"daemonType": "default",
-	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"coin": "talleo",
+	"symbol": "TLO",
+	"coinUnits": 100,
+	"coinDecimalPlaces": 2,
+	"coinDifficultyTarget": 60,
+	"blockchainExplorer": "https://pool.talleo.org/?hash={id}#blockchain_block",
+	"transactionExplorer": "https://pool.talleo.org/?hash={id}#blockchain_transaction",
+	"daemonType": "bytecoin",
+	"previousOffset": null,
+	"cnAlgorithm": "cryptonight-turtle",
+	"isRandomX": false,
+	"cnVariant": 2,
+	"cnBlobType": 2,
+	"includeHeight": false,
+	"includeAlgo": "cn/ultra",
+
+	"hashingUtil": true,
 
 	"logging": {
 		"files": {
@@ -24,50 +30,48 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": null,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
-		"sslCert": "./cert.pem",
-		"sslKey": "./privkey.pem",
-		"sslCA": "./chain.pem",
+		"sslCert": "cert.pem",
+		"sslKey": "privkey.pem",
+		"sslCA": "chain.pem",
 		"ports": [
 			{
 				"port": 3333,
-				"difficulty": 5000,
+				"difficulty": 10000,
 				"desc": "Low end hardware"
             },
 			{
 				"port": 4444,
-				"difficulty": 15000,
+				"difficulty": 100000,
 				"desc": "Mid range hardware"
             },
 			{
 				"port": 5555,
-				"difficulty": 25000,
+				"difficulty": 1000000,
 				"desc": "High end hardware"
             },
 			{
 				"port": 7777,
-				"difficulty": 500000,
+				"difficulty": 10000000,
 				"desc": "Cloud-mining / NiceHash"
             },
 			{
 				"port": 8888,
-				"difficulty": 25000,
+				"difficulty": 1000,
 				"desc": "Hidden port",
 				"hidden": true
             },
 			{
 				"port": 9999,
-				"difficulty": 20000,
+				"difficulty": 100000,
 				"desc": "SSL connection",
 				"ssl": true
             }
@@ -75,10 +79,10 @@
 		"varDiff": {
 			"minDiff": 100,
 			"maxDiff": 100000000,
-			"targetTime": 60,
+			"targetTime": 30,
 			"retargetTime": 30,
 			"variancePercent": 30,
-			"maxJump": 100
+			"maxJump": 50
 		},
 		"paymentId": {
 			"addressSeparator": ".",
@@ -113,60 +117,63 @@
 
 	"payments": {
 		"enabled": true,
-		"interval": 1800,
+		"interval": 300,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 1,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 1,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
+		"minPayment": 50,
 		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"maxTransactionAmount": 200000,
+		"denomination": 1
 	},
 
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
-		"depth": 60,
-		"poolFee": 0.8,
-		"devDonation": 0.2,
-		"networkFee": 0.0
+		"depth": 10,
+		"poolFee": 0.0,
+		"devDonation": 0.0,
+		"networkFee": 0.0,
+		"fixBlockHeightRPC": false,
+		"useFirstVout": false
 	},
 
 	"api": {
 		"enabled": true,
 		"hashrateWindow": 600,
-		"updateInterval": 5,
+		"updateInterval": 20,
 		"bindIp": "0.0.0.0",
-		"port": 8117,
+		"port": 8126,
 		"blocks": 30,
 		"payments": 30,
-		"password": "your_password",
-		"ssl": false,
-		"sslPort": 8119,
-		"sslCert": "./cert.pem",
-		"sslKey": "./privkey.pem",
-		"sslCA": "./chain.pem",
+		"password": "Password",
+		"ssl": true,
+		"sslPort": 8127,
+		"sslCert": "cert.pem",
+		"sslKey": "privkey.pem",
+		"sslCA": "chain.pem",
 		"trustProxyIP": true
 	},
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 33888,
+		"alwaysPoll": true
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 33777
 	},
 
 	"redis": {
 		"host": "127.0.0.1",
 		"port": 6379,
 		"auth": null,
-		"db": 0,
+		"db": 10,
 		"cleanupInterval": 15
 	},
 

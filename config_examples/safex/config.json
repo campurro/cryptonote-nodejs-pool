@@ -1,17 +1,18 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
+	"coin": "safex",
+	"symbol": "SAFEX",
+	"coinUnits": 10000000000,
 	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
+	"coinDifficultyTarget": 120,
+
 	"daemonType": "default",
-	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"cnAlgorithm": "randomx",
+	"cnVariant": 0,
+	"cnBlobType": 23,
+	"includeHeight": false,
+	"isRandomX": true,
 
 	"logging": {
 		"files": {
@@ -24,15 +25,14 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
+
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": 251,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -115,15 +115,15 @@
 		"enabled": true,
 		"interval": 1800,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 5,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 20000000,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
-		"maxPayment": null,
+		"minPayment": 20000000000,
+		"maxPayment": 5000000000000,
 		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"denomination": 100000000
 	},
 
 	"blockUnlocker": {
@@ -154,12 +154,12 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 17402
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 17404
 	},
 
 	"redis": {

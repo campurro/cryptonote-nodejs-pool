@@ -1,17 +1,19 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
+	"coin": "equilibria",
+	"symbol": "XEQ",
+	"coinUnits": 10000,
 	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
+	"coinDifficultyTarget": 120,
+	"blockchainExplorer": "https://explorer.equilibria.network/block/{id}",
+	"transactionExplorer": "https://explorer.equilibria.network/tx/{id}",
 	"daemonType": "default",
-	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"cnAlgorithm": "cryptonight_gpu",
+	"cnVariant": 11,
+	"cnBlobType": 5,
+	"isRandomX": false,
+	"includeHeight": false,
 
 	"logging": {
 		"files": {
@@ -24,15 +26,14 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": "25247",
+		"subAddressPrefix": "22944",
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -71,6 +72,7 @@
 				"desc": "SSL connection",
 				"ssl": true
             }
+
         ],
 		"varDiff": {
 			"minDiff": 100,
@@ -82,7 +84,7 @@
 		},
 		"paymentId": {
 			"addressSeparator": ".",
-			"validation": false,
+			"validation": true,
 			"validations": ["1,16", "64"],
 			"ban": true
 		},
@@ -113,26 +115,28 @@
 
 	"payments": {
 		"enabled": true,
-		"interval": 1800,
+		"interval": 3600,
 		"maxAddresses": 50,
-		"mixin": 12,
-		"priority": 0,
-		"transferFee": 1000,
+		"mixin": 15,
+		"priority": 3,
+		"transferFee": 25,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
-		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"minPayment": 5000,
+		"maxPayment": 300000,
+		"maxTransactionAmount": null,
+		"denomination": 100
 	},
 
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
-		"depth": 60,
-		"poolFee": 0.8,
-		"devDonation": 0.2,
-		"networkFee": 0.0
+		"depth": 18,
+		"poolFee": 0,
+		"soloFee": 0.5,
+		"devDonation": 0,
+		"networkFee": 0,
+		"useFirstVout": true
 	},
 
 	"api": {
@@ -154,12 +158,12 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 9231
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 18081
 	},
 
 	"redis": {
@@ -239,9 +243,8 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify",
-			"blocks": "/blocks"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
 

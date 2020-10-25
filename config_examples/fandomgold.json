@@ -1,17 +1,17 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
-	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
+	"coin": "fango",
+	"symbol": "XFG",
+	"coinUnits": 10000000,
+	"coinDecimalPlaces": 7,
+	"coinDifficultyTarget": 480,
+	"blockchainExplorer": "http://explorer.fandom.gold/block/{id}",
+	"transactionExplorer": "http://explorer.fandom.gold/tx/{id}",
 	"daemonType": "default",
 	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"cnVariant": 8,
+	"cnBlobType": 2,
 
 	"logging": {
 		"files": {
@@ -24,15 +24,13 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
-		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"poolAddress": "** Your pool wallet fango- address **",
+		"intAddressPrefix": 6,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -115,15 +113,14 @@
 		"enabled": true,
 		"interval": 1800,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 2,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 800000,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
-		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"minPayment": 1000000000,
+		"maxTransactionAmount": 8000000000000,
+		"denomination": 1000000000
 	},
 
 	"blockUnlocker": {
@@ -132,7 +129,8 @@
 		"depth": 60,
 		"poolFee": 0.8,
 		"devDonation": 0.2,
-		"networkFee": 0.0
+		"networkFee": 0.0,
+		"fixBlockHeightRPC": false
 	},
 
 	"api": {
@@ -154,12 +152,12 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 8070
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 8071
 	},
 
 	"redis": {
@@ -230,7 +228,6 @@
 
 	"telegram": {
 		"enabled": false,
-		"botName": "",
 		"token": "",
 		"channel": "",
 		"channelStats": {
@@ -239,20 +236,19 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify",
-			"blocks": "/blocks"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
 
 	"monitoring": {
 		"daemon": {
 			"checkInterval": 60,
-			"rpcMethod": "getblockcount"
+			"rpcMethod": "get_status"
 		},
 		"wallet": {
 			"checkInterval": 60,
-			"rpcMethod": "getbalance"
+			"rpcMethod": "get_balance"
 		}
 	},
 
@@ -316,10 +312,6 @@
 			"payments": {
 				"enabled": true
 			}
-		},
-		"blocks": {
-			"enabled": true,
-			"days": 30
 		}
 	}
 }

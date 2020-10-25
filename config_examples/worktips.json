@@ -1,17 +1,17 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
+	"coin": "worktips",
+	"symbol": "WTIP",
+	"coinUnits": 100000000,
 	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
+	"coinDifficultyTarget": 120,
 	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
 	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
-	"daemonType": "default",
-	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"daemonType": "bytecoin",
+	"cnAlgorithm": "cryptonight_light",
+	"cnVariant": 1,
+	"cnBlobType": 2,
 
 	"logging": {
 		"files": {
@@ -24,15 +24,13 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": null,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -115,24 +113,24 @@
 		"enabled": true,
 		"interval": 1800,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 1,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 50000000,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
-		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 10000000
+		"minPayment": 100000000000,
+		"maxTransactionAmount": 2000000000000000,
+		"denomination": 100000000
 	},
 
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
-		"depth": 60,
+		"depth": 10,
 		"poolFee": 0.8,
 		"devDonation": 0.2,
-		"networkFee": 0.0
+		"networkFee": 0.0,
+		"fixBlockHeightRPC": false
 	},
 
 	"api": {
@@ -154,12 +152,13 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 18238
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 8082,
+		"password": "rpc_password"
 	},
 
 	"redis": {
@@ -230,7 +229,6 @@
 
 	"telegram": {
 		"enabled": false,
-		"botName": "",
 		"token": "",
 		"channel": "",
 		"channelStats": {
@@ -239,9 +237,8 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify",
-			"blocks": "/blocks"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
 
@@ -252,7 +249,7 @@
 		},
 		"wallet": {
 			"checkInterval": 60,
-			"rpcMethod": "getbalance"
+			"rpcMethod": "getBalance"
 		}
 	},
 
@@ -316,10 +313,6 @@
 			"payments": {
 				"enabled": true
 			}
-		},
-		"blocks": {
-			"enabled": true,
-			"days": 30
 		}
 	}
 }

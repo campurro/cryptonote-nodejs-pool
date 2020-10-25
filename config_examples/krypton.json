@@ -1,18 +1,16 @@
 {
-	"poolHost": "your ip",
-
-	"coin": "Luka",
-	"symbol": "LUK",
-	"coinUnits": 100000000,
-	"coinDecimalPlaces": 4,
+	"poolHost": "https://yourpool.example.com",
+	"coin": "krypton",
+	"symbol": "ZOD",
+	"coinUnits": 1000000,
+	"coinDecimalPlaces": 6,
 	"coinDifficultyTarget": 60,
 	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
 	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
 	"daemonType": "bytecoin",
-	"cnAlgorithm": "cryptonight",
-	"cnVariant": 0,
+	"cnAlgorithm": "cryptonight_light",
+	"cnVariant": 1,
 	"cnBlobType": 2,
-
 	"logging": {
 		"files": {
 			"level": "info",
@@ -28,8 +26,8 @@
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
-		"clusterForks": "auto",
-		"poolAddress": "**your pool wallet**",
+		"clusterForks": 6,
+		"poolAddress": "your_KRYPTON_ADDRESS_to_receive_block_rewards",
 		"intAddressPrefix": null,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
@@ -62,19 +60,13 @@
 				"difficulty": 25000,
 				"desc": "Hidden port",
 				"hidden": true
-            },
-			{
-				"port": 9999,
-				"difficulty": 20000,
-				"desc": "SSL connection",
-				"ssl": true
             }
-],
+        ],
 		"varDiff": {
 			"minDiff": 100,
 			"maxDiff": 100000000,
 			"targetTime": 60,
-			"retargetTime": 30,
+			"retargetTime": 60,
 			"variancePercent": 30,
 			"maxJump": 100
 		},
@@ -84,6 +76,16 @@
 			"validations": ["1,16", "64"],
 			"ban": true
 		},
+		"separators": [
+			{
+				"value": "+",
+				"desc": "plus"
+            },
+			{
+				"value": ".",
+				"desc": "dot"
+            }
+        ],
 		"fixedDiff": {
 			"enabled": true,
 			"addressSeparator": "."
@@ -108,32 +110,28 @@
 			"lastBlockCheckRate": 1
 		}
 	},
-
 	"payments": {
 		"enabled": true,
 		"interval": 1800,
 		"maxAddresses": 50,
-		"mixin": 1,
+		"mixin": 0,
 		"priority": 0,
-		"transferFee": 100000,
+		"transferFee": 100,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 25000000,
-		"maxPayment": null,
-		"maxTransactionAmount": 0,
-		"denomination": 100000000
+		"minPayment": 1000000,
+		"maxTransactionAmount": 500000000,
+		"denomination": 100
 	},
-
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
-		"depth": 10,
-		"poolFee": 0.0,
-		"devDonation": 0.0,
+		"depth": 20,
+		"poolFee": 1,
+		"devDonation": 0,
 		"networkFee": 0.0,
-		"fixBlockHeightRPC": true
+		"fixBlockHeightRPC": false
 	},
-
 	"api": {
 		"enabled": true,
 		"hashrateWindow": 600,
@@ -142,33 +140,29 @@
 		"port": 8117,
 		"blocks": 30,
 		"payments": 30,
-		"password": "your_password",
+		"password": "set_custom_password_here",
 		"ssl": false,
-		"sslPort": 8119,
+		"sslPort": 3109,
 		"sslCert": "./cert.pem",
 		"sslKey": "./privkey.pem",
 		"sslCA": "./chain.pem",
 		"trustProxyIP": true
 	},
-
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 52421
+		"port": 12888
 	},
-
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 52424
+		"port": 8070
 	},
-
 	"redis": {
 		"host": "127.0.0.1",
 		"port": 6379,
 		"auth": null,
-		"db": 5,
+		"db": 0,
 		"cleanupInterval": 15
 	},
-
 	"notifications": {
 		"emailTemplate": "email_templates/default.txt",
 		"emailSubject": {
@@ -201,10 +195,9 @@
 			"payment": "A payment of _%AMOUNT%_ has been sent."
 		}
 	},
-
 	"email": {
 		"enabled": false,
-		"fromAddress": "your@email.com",
+		"fromAddress": "no-reply@example.com",
 		"transport": "sendmail",
 		"sendmail": {
 			"path": "/usr/sbin/sendmail"
@@ -226,10 +219,8 @@
 			"domain": "mg.yourdomain"
 		}
 	},
-
 	"telegram": {
 		"enabled": false,
-		"botName": "",
 		"token": "",
 		"channel": "",
 		"channelStats": {
@@ -238,11 +229,10 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
-
 	"monitoring": {
 		"daemon": {
 			"checkInterval": 60,
@@ -253,12 +243,10 @@
 			"rpcMethod": "getbalance"
 		}
 	},
-
 	"prices": {
 		"source": "tradeogre",
 		"currency": "USD"
 	},
-
 	"charts": {
 		"pool": {
 			"hashrate": {
